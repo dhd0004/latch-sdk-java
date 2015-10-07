@@ -162,6 +162,24 @@ public class LatchApp extends LatchAuth {
         return HTTP_POST_proxy(url.toString(), data);
     }
 
+    public LatchResponse requestSigning(String accountId, String operationId){
+        StringBuilder url = new StringBuilder(API_REQ_SIGNING_URL).append("/").append(accountId);
+        if (operationId != null && !operationId.isEmpty()){
+            url.append("/op/").append(operationId);
+        }
+
+        return HTTP_GET_proxy(url.toString());
+    }
+
+    public LatchResponse signingStatus(String accountId, String operationId){
+        StringBuilder url = new StringBuilder(API_SIGNING_STATUS_URL).append("/").append(accountId);
+        if (operationId != null && !operationId.isEmpty()){
+            url.append("/op/").append(operationId);
+        }
+
+        return HTTP_GET_proxy(url.toString());
+    }
+
     public LatchResponse addInstance(String accountId, String operationId, String instanceName){
         StringBuilder url = new StringBuilder(API_INSTANCE_URL).append("/").append(accountId);
         if (operationId != null && !operationId.isEmpty()){
